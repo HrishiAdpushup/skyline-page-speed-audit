@@ -74,6 +74,10 @@ const { URL } = require("url");
         onlyCategories: ["performance"],
         port: new URL(browser.wsEndpoint()).port,
         stratergy: "desktop",
+        blockedUrlPatterns: [
+          "*googlesyndication.com*",
+          "*googleadservices.com*",
+        ],
       };
 
       const lhConfig = {
