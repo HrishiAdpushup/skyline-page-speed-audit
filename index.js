@@ -4,14 +4,10 @@ const puppeteer = require("puppeteer");
 const { URL } = require("url");
 
 (function () {
+  const url = "https://www.skylinewebcams.com/";
   (async () => {
     for (var i = 1; i <= 30; i++) {
       console.log(`*********************Test ${i}*********************`);
-      const url = "https://www.skylinewebcams.com/";
-
-      const blockedUrls = [
-        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3692263245422372",
-      ];
 
       // Use Puppeteer to launch headful Chrome and don't use its default 800x600 viewport.
       const browser = await puppeteer.launch({
@@ -111,11 +107,7 @@ const { URL } = require("url");
         emulatedFormFactor: "desktop",
       };
 
-      const runnerResult = await lighthouse(
-        "https://www.skylinewebcams.com/",
-        options,
-        lhConfig
-      );
+      const runnerResult = await lighthouse(url, options, lhConfig);
 
       const reportHtml = runnerResult.report;
       fs.writeFileSync(i + "_DESKTOP.html", reportHtml);
